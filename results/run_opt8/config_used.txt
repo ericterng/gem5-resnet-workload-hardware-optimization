@@ -1,0 +1,29 @@
+==== Parameter Configuration Used ====
+Wf = 12
+Wd = 12
+Wr = 10
+Wi = 12
+Ww = 10
+Wc = 12
+ROB = 96
+intRegs = 64
+fpRegs = 64
+LQ = 192
+SQ = 192
+cores = 4
+L1 = 32
+L2 = 2048
+L3 = 8192
+L3slices = 1
+
+==== Cost Breakdown ====
+CPU_cost = 236.05
+L1_cost = 48.00
+L2_cost = 512.00
+L3_cost = 128.00
+Memory_cost = 130.00
+NoC_cost = 210.00
+
+==== Total Cost ====
+Total(before rounding) = 1264.05
+Total(rounded) = 1264

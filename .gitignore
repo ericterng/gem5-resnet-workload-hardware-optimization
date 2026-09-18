@@ -1,0 +1,41 @@
+# ---------------------------------------------------------------
+# gem5 raw simulation output
+#
+# Each run/ directory originally contained ~9 MB of gem5-generated
+# artifacts (full statistics dumps, serialized configurations and
+# graph renderings). They are reproducible by re-running the
+# scripts, so only the human-readable inputs are tracked:
+#
+#   results/auto_results.csv        aggregated results of all runs
+#   results/<run>/config_used.txt   parameters + cost for that run
+# ---------------------------------------------------------------
+results/**/stats.txt
+results/**/config.json
+results/**/config.ini
+results/**/config.dot
+results/**/config.dot.pdf
+results/**/config.dot.svg
+results/**/config.board.*.dot
+results/**/config.board.*.dot.pdf
+results/**/config.board.*.dot.svg
+results/**/citations.bib
+results/**/board.pc.com_*.device
+results/**/readfile_*
+
+# gem5 external resources (multi-GB, fetched separately)
+binaries/
+disks/
+m5out/
+
+# Superseded copy of the report (kept as "report.pdf" without the space).
+# Safe to delete from disk once no viewer has it open.
+report .pdf
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
