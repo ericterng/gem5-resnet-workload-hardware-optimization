@@ -17,20 +17,22 @@ hardware cost model to find where performance stops being worth its price.
 
 ## Key results
 
-- Evaluated **35 microarchitecture configurations** in full-system simulation.
-- Improved ResNet execution time from **1.955 ms → 1.476 ms (1.32× speedup)**.
-- `run18` landed within **0.14 %** of the fastest configuration at **25.6 % lower
-  hardware cost**; `run8` reached **+29.2 %** performance for only **+14.7 %** cost —
-  **1.13×** the baseline's performance-per-cost, the best in the sweep.
-- Identified **pipeline width and physical register count** — not cache capacity —
-  as the primary performance bottleneck.
+- Evaluated **35 microarchitecture configurations** using full-system gem5 simulation.
+- Reduced ResNet workload execution time from **1.955 ms to 1.476 ms**
+  (**1.32× speedup** over baseline).
+- `run18` achieved performance within **0.14 % of the fastest configuration** at
+  **25.6 % lower modeled hardware cost**; `run8` reached **+29.2 %** performance for
+  only **+14.7 %** cost — **1.13×** the baseline's performance-per-cost, the best
+  in the sweep.
+- Found that **pipeline width and physical-register capacity** had a larger
+  performance impact than further increasing cache size for this workload.
 
 | | |
 | --- | --- |
 | Configurations simulated | **35** |
 | Best performance/cost (`run8`) | **+29.2 % faster** at **+14.7 % cost** → **1.13×** the baseline's perf-per-cost |
 | Fastest design (`run_opt4`) | +32.6 % faster, but at **+78.6 % cost** |
-| Best near-peak value (`run18`) | within **0.14 %** of the fastest, at **25.6 % lower cost** |
+| Best near-peak value (`run18`) | within **0.14 %** of the fastest, at **25.6 % lower modeled cost** |
 | Total performance spread | 35 % between the best and worst configuration |
 
 The interesting finding is not the fastest machine — it is the shape of the
@@ -86,8 +88,9 @@ resnet_mt --channels 16 --size 8 --blocks 4 --threads 4
 ## What the sweep showed
 
 **Performance saturates long before cost does.** `run18` matches the fastest
-configuration to within 0.14% at 25.6% lower cost. Past roughly 1 MB of L2 and
-4 MB of L3, this workload stops caring.
+configuration to within 0.14% at **25.6% lower modeled cost** than `run_opt4`, and
+**27.4% lower** than `run20`. Past roughly 1 MB of L2 and 4 MB of L3, this
+workload stops caring.
 
 **The core, not the cache, is the lever.** Every configuration in the top group
 runs uniform 12-wide pipelines with 96 physical registers. `run8` reaches
